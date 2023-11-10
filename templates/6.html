@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Praktika_2022</title>
+</head>
+<body>
+    <div>
+        <button onclick="window.location.href = window.location.origin">home page</button>
+        <button type="button" onclick="prev();">previous page</button>
+        <button type="button" onclick="next();">next page</button>
+        <!--<button onclick="window.location.href = window.location.href+'/prev'">previous page</button>
+        <button onclick="window.location.href = window.location.href+'/next'">next page</button>-->
+        <script>
+            function next(){
+                var s = window.location.pathname;
+                var n = 0;
+                for(var i = 5; i<s.length; i++){
+                    var m = Number(s[i]);
+                    n = n*10 + m;
+                }
+                window.location.href = window.location.origin + '/page' + String(n+1);
+            }
+            function prev(){
+                var s = window.location.pathname;
+                var n = 0;
+                for(var i = 5; i<s.length; i++){
+                    var m = Number(s[i]);
+                    n = n*10 + m;
+                }
+                window.location.href = window.location.origin + '/page' + String(n-1);
+            }
+        </script>
+    </div>
+    <div class="table">
+        {% for row in table %}
+        <table>
+            <tr>
+                <col width="150">
+                <!--<col width="75">
+                <col width="75">
+                <col width="175">
+                <col width="25">
+                <col width="150">
+                <col width="200">
+                <col width="25">
+                <col width="575">-->
+                <th>orcid_id</th>
+                <th>name</th>
+                <th>surname</th>
+                <th>other_names</th>
+                <th>country</th>
+                <th>external_ids</th>
+                <th>kwords_str</th>
+                <th>works-counter</th>
+                <th>works</th>
+            </tr>
+            {% for field in row %}
+            <tr>
+                {% for a in field %}
+                <td>{{ a }}</td>
+                {% endfor %}</tr>
+            {% endfor %}
+        </table>
+        {% endfor %}
+    </div>
+    <style>
+        .doi_col{
+            width: 150px;
+        }
+        .wos_col{
+            width: 150px;
+        }
+        .eid_col{
+            width: 150px;
+        }
+    </style>
+</body>
+</html>
